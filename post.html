@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada 1</title>
+    <style>
+        #body{
+            display: block;
+            text-align: center;
+        }
+
+        #text{
+            max-width: 1200px;
+            max-height: 2400px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+
+        .card {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .more {
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body id="body">
+    <Header>
+        <h1>
+            Family and Hobbies: Conversations that connect 
+        </h1>
+    </Header>
+    <article id="text">
+        <p>
+            Learning a new language is often seen as a structured academic process—memorizing grammar rules, repeating vocabulary lists, and practicing sentence structures. However, I’ve discovered that learning English feels much more natural and enjoyable when I connect it with what I love most: my family, my traditions, and my hobbies. By making language learning personal, I’ve unlocked an incredibly powerful tool for growth.
+
+            One of the most effective strategies I’ve used is engaging in conversations with friends and family. We recorded audios where we described our favorite hobbies, such as playing billiards, soccer, and bolirana. These conversations didn’t feel like lessons; they felt like everyday moments, full of laughter and shared enthusiasm. By talking about things we are passionate about, I improved my pronunciation, expanded my vocabulary, and gained confidence in expressing myself in English.
+
+            Beyond hobbies, I also explored deeper and more meaningful topics—my traditions, my home, and the relationships that define my life. Writing about these subjects helped me acquire new words and expressions while reinforcing the connection between language and identity. The simple act of describing my surroundings in English not only strengthened my ability to communicate but also deepened my appreciation for my culture.
+
+            What surprised me most was how effortlessly learning happened when I immersed myself in familiar experiences. When we associate language with emotions and memories, it becomes less about studying and more about living. English stopped feeling like an academic subject and instead became a bridge—a way to share my passions and connect with others.
+
+            Looking back, I realize that language is fundamentally about communication and connection. Whether discussing family traditions or explaining how to play a sport, every conversation offers an opportunity to grow. By weaving language into our daily lives, we create a learning process that is natural, engaging, and deeply rewarding.
+
+            If you’re learning a new language, I encourage you to find personal ways to integrate it into your life. Record conversations about your hobbies, write about the people and places that matter to you, and engage with the language in ways that feel authentic. You may discover that learning becomes less of a challenge and more of an adventure—one that allows you to express yourself with confidence and joy.
+
+            After all, language is more than just words and grammar. It is a reflection of who we are, what we love, and the connections that bring us together.
+
+        </p>
+    </article>
+
+    <p>Este es un resumen corto... <span class="dots">...</span> 
+        <span class="more">Aquí está el resto del contenido que aparece cuando se expande.</span></p>
+    <button onclick="expandirTexto()">Leer más</button>
+
+
+    <div id="post-container">
+        <a href="#" onclick="cargarPost('entrada1.html')">Post 1</a>
+        <a href="#" onclick="cargarPost('entrada2.html')">Post 2</a>
+        <div id="post-content" class="card"></div>
+    </div>
+
+    <footer>
+        2025 My English Learning Blog. All rights reserved.
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
