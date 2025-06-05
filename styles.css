@@ -1,201 +1,296 @@
-.main{
+/* --- Base Styles --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh; /* Asegura que el body ocupe al menos el alto de la ventana */
+    display: flex; /* Permite que el main ocupe el espacio */
+    flex-direction: column;
+}
+
+/* --- Grid Container for Main Content --- */
+.main {
     display: grid;
-    grid-template-columns: repeat(8 1fr);
-    grid-template-rows: repeat(12 1fr);
-    gap: 12px;
-}
-
-.header{
-    display: block;
-    grid-column: span 8 / span 8;
-    border-bottom-style: solid;
-    padding: 15px;
-    text-align: center;
-}
-
-.header nav a{
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-nav a:last-child{
-    margin-right: 0;
-}
-
-.section3{
-    grid-column: span 3 / span 3;
-    grid-row: span 8 / span 8;
-    grid-column-start: 6;
-    grid-row-start: 2;
-    display: block;
-    text-align: center;
-    height: fit-content;
+    /* Definimos las columnas:
+       - 1fr para la columna principal de posts (flexible)
+       - 320px para la columna lateral (perfil y comentarios), puedes ajustar este ancho fijo
+    */
+    grid-template-columns: 1fr 320px; /* ¡Cambio en las columnas! */
+    /* Definimos las filas:
+       - auto para el header
+       - auto para la sección "Latest Entries"
+       - 1fr para el contenido principal (posts y sidebar) - ¡CLAVE!
+       - auto para el footer
+    */
+    grid-template-rows: auto auto 1fr auto; /* ¡Cambio en las filas! */
+    gap: 20px; /* Espacio global entre celdas */
     padding: 20px;
-       
+    flex-grow: 1; /* Permite que el grid crezca y ocupe el espacio disponible */
+    max-width: 1200px; /* Limita el ancho máximo del contenido */
+    margin: 0 auto; /* Centra el contenedor principal */
 }
 
-/*#title {
+/* --- Header --- */
+.header {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    grid-row: 1; /* Fila 1 */
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
     text-align: center;
-    color: blue;
-}*/
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0; /* Espacio se maneja con gap */
+    padding-top: 15px;
+}
 
-#text {
+.header h1 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.header nav a {
+    text-decoration: none;
+    margin: 0 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.header nav a:hover {
+    color: #0056b3;
+}
+
+/* --- Latest Entries (Section 4) --- */
+.section4 {
+    grid-column: 1; /* Solo la primera columna */
+    grid-row: 2; /* Fila 2 */
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0; /* Espacio se maneja con gap */
+    margin-bottom: 0; /* Espacio se maneja con gap */
+}
+
+/* --- Blog Posts Container (Left Column) --- */
+#blog-posts-container {
+    grid-column: 1; /* Columna 1 */
+    grid-row: 3; /* Fila 3, la flexible (1fr) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las tarjetas de posts */
+}
+
+/* --- Blog Post Card Style (for both index and post.html) --- */
+.blog-post-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /* margin-bottom: 20px; este lo quitamos porque el gap de flexbox lo maneja */
+}
+
+.blog-post-card h2 {
+    color: #333;
+    margin-top: 0;
+    text-align: center;
+}
+
+.blog-post-card p {
+    margin-bottom: 10px;
+}
+
+.blog-post-card .summary {
+    line-height: 1.6;
     text-align: justify;
 }
 
-.section3 img {
+.blog-post-card .full-content {
+    display: none;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.blog-post-card.expanded .full-content {
+    display: block;
+}
+
+.read-more-btn,
+.toggle-content-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    text-decoration: none;
     display: inline-block;
-    width: 40%;
-    height: 40%;
-    padding: 60px;
 }
 
-.redes{
-    display: flex;
+.read-more-btn:hover,
+.toggle-content-btn:hover {
+    background-color: #0056b3;
+}
+
+/* --- Post Detail Page (post.html) Specific Styles --- */
+.post-detail-main {
+    grid-column: 1 / -1; /* Ocupa todas las columnas en la página de detalle */
+    grid-row: 2 / span 2; /* Puedes ajustar esto si tienes más elementos en post.html */
+    max-width: 900px; /* Ancho máximo para la tarjeta de detalle */
+    margin: 20px auto; /* Centra la tarjeta */
+}
+
+.post-detail-main .blog-post-card .toggle-content-btn {
+    margin-right: 10px;
+}
+
+/* --- Sección de Perfil (Right Column) --- */
+.section3 {
+    grid-column: 2; /* La columna de 320px a la derecha */
+    grid-row: 2 / span 2; /* Se extiende desde la fila 2 (Latest Entries) hasta la fila 3 (Posts) */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
     height: fit-content;
+    align-self: start; /* Se alinea al inicio de la celda, no se estira */
 }
 
-.section4{
-    grid-column: span 5 / span 5;
-    grid-column-start: 1;
-    grid-row-start: 2;
-    
-}
-
-
-.section5{
-    grid-column: span 5 / span 5;
-    grid-row: span 2 / span 2;
-    grid-column-start: 1;
-    grid-row-start: 3;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-}
-
-.section5 h1{
+.profile-title {
     text-align: center;
+    color: #333;
+    margin-top: 0;
 }
 
-.section6{
-    grid-column: span 5 / span 5;
-    grid-row: span 2 / span 2;
-    grid-column-start: 1;
-    grid-row-start: 5;
+.profile-text {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.section3 img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.redes img {
+    width: 30px;
+    height: 30px;
+}
+
+/* --- Comments Section (Right Column, below profile) --- */
+.section11 {
+    grid-column: 2; /* Columna 2 */
+    grid-row: 3; /* Se posiciona en la misma fila 3 que el perfil y los posts */
+    background-color: #fff;
     padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    align-self: end; /* ¡CLAVE! Se alinea al final de la celda, empujando el perfil hacia arriba */
+    margin-top: auto; /* Esto también ayuda a empujar hacia abajo si no está en la última posición */
 }
 
-.section7{
-    grid-column: span 5 / span 5;
-    grid-row: span 2 / span 2;
-    grid-column-start: 1;
-    grid-row-start: 7;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-}
-
-.section8{
-    grid-column: span 5 / span 5;
-    grid-row: span 2 / span 2;
-    grid-column-start: 1;
-    grid-row-start: 9;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-}
-
-.section9{
-    grid-column: span 3 / span 3;
-    grid-row: span 2 / span 2;
-    grid-column-start: 1;
-    grid-row-start: 11;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-}
-
-.section10{
-    grid-column: span 2 / span 2;
-    grid-row: span 2 / span 2;
-    grid-column-start: 4;
-    grid-row-start: 11;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-}
-
-.section11{
-    grid-column: span 3 / span 3;
-    grid-row: span 3 / span 3;
-    grid-column-start: 6;
-    grid-row-start: 10;
-    padding: 20px;
-}
-
-.form-comment{
-    display: block;
-}
-
-#fl-comment{
-    display: block;
-    height: 307px; 
-    width: 696px;
-}
-
-.form-name{
-    display: block;
-}
-
-#fl-name{
-    display: block;
-    width: 696px;
-}
-
-.form-email{
-    display: block;
-}
-
-#fl-email{
-    display: block;
-    width: 696px;
-}
-
-.botton{
-    margin-left: 62%;
-}
-
-.botton input{
-    width: 80px;
-    height: 40px;
-}
-
-.footer{
-    grid-column: span 8 / span 8;
-    grid-column-start: 1;
-    grid-row-start: 13;
+.section11 h1 {
     text-align: center;
-    border-top-style: solid;
+    margin-bottom: 20px;
 }
 
+.form-comment label,
+.form-name label,
+.form-email label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
+#fl-comment,
+#fl-name,
+#fl-email {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+#fl-comment {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.botton {
+    text-align: right;
+}
+
+.botton input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.botton input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* --- Footer --- */
+.footer {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    grid-row: 4; /* Fila 4 */
+    border-top: 1px solid #ddd;
+    padding: 1em 0;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    margin-top: 20px; /* Espacio con el contenido de arriba */
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+        grid-template-rows: auto auto auto auto auto; /* Más filas para apilar contenido */
+        padding: 10px;
+    }
+
+    .header,
+    .section4,
+    #blog-posts-container,
+    .section3,
+    .section11,
+    .footer {
+        grid-column: 1; /* Todos ocupan la única columna */
+        grid-row: unset; /* Reinicia el row para que se apilen automáticamente */
+        margin-bottom: 20px; /* Espacio entre secciones apiladas */
+        margin-top: 0;
+    }
+
+    /* Ajuste de orden para móvil */
+    .header { order: 1; }
+    .section4 { order: 2; }
+    #blog-posts-container { order: 3; }
+    .section3 { order: 4; }
+    .section11 { order: 5; }
+    .footer { order: 6; }
+
+    .section3 img {
+        width: 150px;
+        height: 150px;
+    }
+}
